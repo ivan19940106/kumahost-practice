@@ -1,6 +1,6 @@
 # version: "3.9"
 services:
-  # 1: Database Container
+  # Database Container
   db:
     platform: linux/x86_64
     image: mariadb
@@ -12,13 +12,18 @@ services:
       MARIADB_PASSWORD: kumahost
     ports:
       - 9306:3306
-  # 2: phpmyadmin 
-  phpmyadmin:
-    image: phpmyadmin
-    environment:
-      MYSQL_ROOT_PASSWORD: kumahost
-      MYSQL_USER: ivan
-      MYSQL_PASSWORD: kumahost
+  # phpmyadmin 
+  # phpmyadmin:
+  #   image: phpmyadmin
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: kumahost
+  #     MYSQL_USER: wpuser
+  #     MYSQL_PASSWORD: kumahost
+  #   ports:
+  #     - 9001:8080
+  # adminer
+  admin:
+    image: adminer
     ports:
       - 9001:8080
   # WordPress Container
