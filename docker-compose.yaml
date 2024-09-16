@@ -1,0 +1,35 @@
+# version: "3.9"
+services:
+  # 1: Database Container
+  db:
+    platform: linux/x86_64
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: kumahost
+      MARIADB_DATABASE: wpdb
+      MARIADB_USER: wpuser
+      MARIADB_PASSWORD: kumahost
+    ports:
+      - 9306:3306
+  # 2: phpmyadmin 
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: kumahost
+      MYSQL_USER: ivan
+      MYSQL_PASSWORD: kumahost
+    ports:
+      - 9001:8080
+  # WordPress Container
+  wordpress:
+    image: wordpress
+    ports:
+      - 9000:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: kumahost
+      WORDPRESS_DB_NAME: wpdb
+volumes:
+  db_data: {}
